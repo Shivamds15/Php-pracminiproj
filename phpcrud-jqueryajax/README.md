@@ -6,7 +6,7 @@ This project provides a simple CRUD (Create, Read, Update, Delete) interface usi
 
 ## Screenshot
 
-.[img](im.jpg)
+![img](im.jpg)
 
 ## Features
 
