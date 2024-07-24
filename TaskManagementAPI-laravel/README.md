@@ -9,7 +9,7 @@
 
 ## Overview
 
-This Laravel-based CRUD API application allows you to manage tasks with basic operations: listing, viewing, creating, updating, and deleting tasks. It includes filtering capabilities for querying tasks based on specific criteria.
+This Laravel-based (Task Management) CRUD API application allows you to manage tasks with basic operations: listing, viewing, creating, updating, and deleting tasks. It includes filtering capabilities for querying tasks based on specific criteria.
 
 ## Setup Instructions
 
@@ -25,8 +25,8 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/your-repository.git
-   cd your-repository
+   git clone 
+   cd 
    ```
 
 2. **Install Dependencies**
@@ -82,22 +82,22 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
 - **Description:** Retrieves a list of tasks. You can filter the tasks by `status` and `due_date` query parameters.
 
   **Example Request:**
-  ```
+  ```http
   GET http://localhost:8000/api/tasks
   ```
 
   **Filter by Status:**
-  ```
+  ```http
   GET http://localhost:8000/api/tasks?status=completed
   ```
 
   **Filter by Due Date:**
-  ```
+  ```http
   GET http://localhost:8000/api/tasks?due_date=2024-07-25
   ```
 
   **Filter by Status and Due Date:**
-  ```
+  ```http
   GET http://localhost:8000/api/tasks?status=completed&due_date=2024-07-25
   ```
 
@@ -108,7 +108,7 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
 - **Description:** Retrieves a single task by its ID.
 
   **Example Request:**
-  ```
+  ```http
   GET http://localhost:8000/api/tasks/1
   ```
 
@@ -116,7 +116,7 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
 
 - **Endpoint:** `/api/tasks`
 - **Method:** `POST`
-- **Description:** Creates a new task. Requires `name` and `due_date` fields.
+- **Description:** Creates a new task. Requires `title`, `status`, and `due_date` fields.
 
   **Example Request:**
   ```http
@@ -124,7 +124,7 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
   Content-Type: application/json
 
   {
-    "name": "New Task",
+    "title": "New Task",
     "status": "pending",
     "due_date": "2024-08-01"
   }
@@ -134,7 +134,7 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
 
 - **Endpoint:** `/api/tasks/{id}`
 - **Method:** `PUT`
-- **Description:** Updates an existing task by its ID. Requires `name`, `status`, and `due_date` fields.
+- **Description:** Updates an existing task by its ID. Fields are `title`, `status`, and `due_date`.
 
   **Example Request:**
   ```http
@@ -142,7 +142,7 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
   Content-Type: application/json
 
   {
-    "name": "Updated Task",
+    "title": "Updated Task",
     "status": "completed",
     "due_date": "2024-08-15"
   }
@@ -155,7 +155,7 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
 - **Description:** Deletes a task by its ID.
 
   **Example Request:**
-  ```
+  ```http
   DELETE http://localhost:8000/api/tasks/1
   ```
 
@@ -189,7 +189,7 @@ Here are some example Postman requests to test the API:
    - **Body (raw JSON):**
      ```json
      {
-       "name": "New Task",
+       "title": "New Task",
        "status": "pending",
        "due_date": "2024-08-01"
      }
@@ -201,7 +201,7 @@ Here are some example Postman requests to test the API:
    - **Body (raw JSON):**
      ```json
      {
-       "name": "Updated Task",
+       "title": "Updated Task",
        "status": "completed",
        "due_date": "2024-08-15"
      }

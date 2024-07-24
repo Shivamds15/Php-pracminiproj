@@ -4,28 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Repositories\TaskRepositoryInterface;
 
 class TaskController extends Controller
 {
+    protected $taskRepo;
+
+    public function __construct(TaskRepositoryInterface $taskRepo)
+    {
+        $this->taskRepo = $taskRepo;
+    }
+
     public function index(Request $request)
     {
-        $query = Task::query();
-
-        if ($request->has('status')) {
-            $query->where('status', $request->status);
-        }
-
-        if ($request->has('due_date')) {
-            $query->whereDate('due_date', $request->due_date);
-        }
-
-        $tasks = $query->get();
+        $filters = $request->only(['status', 'due_date']);
+        $tasks = $this->taskRepo->all($filters);
         return response()->json($tasks);
     }
 
     public function show($id)
     {
-        $task = Task::find($id);
+        $task = $this->taskRepo->find($id);
         if (!$task) {
             return response()->json(['message' => 'Task not found'], 404);
         }
@@ -34,43 +33,38 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'status' => 'nullable|string',
             'due_date' => 'nullable|date',
         ]);
-
-        $task = Task::create($request->all());
+        $task = $this->taskRepo->create($validated);
         return response()->json($task, 201);
-    }
+    }   
 
     public function update(Request $request, $id)
     {
-        $task = Task::find($id);
-        if (!$task) {
-            return response()->json(['message' => 'Task not found'], 404);
-        }
-
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'status' => 'nullable|string',
             'due_date' => 'nullable|date',
         ]);
-
-        $task->update($request->all());
+        $task = $this->taskRepo->update($id, $validated);
+        if (!$task) {
+            return response()->json(['message' => 'Task not found'], 404);
+        }
         return response()->json($task);
     }
 
     public function destroy($id)
     {
-        $task = Task::find($id);
+        $task = $this->taskRepo->find($id);
         if (!$task) {
             return response()->json(['message' => 'Task not found'], 404);
         }
-
-        $task->delete();
-        return response()->json(['message' => 'Task deleted']);
+        $this->taskRepo->delete($id);
+        return response()->json(['message' => 'Task deleted'], 204);
     }
 }
