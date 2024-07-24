@@ -9,7 +9,7 @@
 
 ## Overview
 
-This Laravel-based CRUD API application allows you to manage tasks with basic operations: listing, viewing, creating, updating, and deleting tasks. It includes filtering capabilities for querying tasks based on specific criteria.
+This Laravel-based CRUD API application (Task Management) allows you to manage tasks with basic operations: listing, viewing, creating, updating, and deleting tasks. It includes filtering capabilities for querying tasks based on specific criteria.
 
 ## Setup Instructions
 
@@ -25,8 +25,8 @@ This Laravel-based CRUD API application allows you to manage tasks with basic op
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/your-repository.git
-   cd your-repository
+   git clone 
+   cd
    ```
 
 2. **Install Dependencies**
